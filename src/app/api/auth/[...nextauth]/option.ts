@@ -3,9 +3,15 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 // import { PrismaAdapter } from '@prisma/adapter-pg'
+import { z } from 'zod'
+
+const credentialShema = z.object({
+    email: z.string().email("Invalid email"),
+    password: z.string().min(4, "Password to short")
+})
 
 export const authOptions: NextAuthOptions = {
-    
+    // adapter: PrismaAdapter(prisma),
     providers: [
         CredentialsProvider({
             id: "credentials",
@@ -16,35 +22,43 @@ export const authOptions: NextAuthOptions = {
             },
             async authorize(credentials: any): Promise<any> {
                 try {
-                    const user = await prisma.user.updateMany({
-                        data: [
-                            { email: credentials.identifier },
-                            { username: credentials.identifier }
-                        ]
-                    })
+                    const parsed = credentialShema.safeParse(credentials)
+                    if (!parsed.success) return null;
 
-                    if (!user) {
-                        throw new Error("No User found with email")
-                    }
+                    const { email, password } = parsed.data
 
-                    if (!prisma.user.findFirst({ where: { isVerified: true } })) {
-                        throw new Error("You are verify first")
-                    }
+                    const user = await prisma.user.findUnique({ where: { email } })
+                    if (!user || !user.password) return null
 
-                    // const isPasswordCorrect = await bcrypt.compare(
-                    //     credentials.password,
-                    //     prisma.user.findFirst({where:{password}})
-                    // )
+                    const passwordMatch = await bcrypt.compare(password, user.password)
 
-                    // if(isPasswordCorrect){
-                    //     return user;
-                    // }else{
-                    //     throw new Error("Incorrect password")
-                    // }
+                    if (!passwordMatch) return null
+
+                    return { id: user.id, email: user.email, usename: user.username, firstname: user.first_name, lastname: user.last_name }
+
                 } catch (error: any) {
                     throw new Error(error)
                 }
             }
+
         })
-    ]
+    ],
+    session: { strategy: "jwt" },
+    pages: {
+        signIn: "/signin"
+    },
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id
+            }
+            return token
+        },
+        async session({ session, token }) {
+            if (token?.id) {
+                session.user.id = token.id as string
+            }
+            return session
+        },
+    },
 }
