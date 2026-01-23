@@ -1,11 +1,12 @@
-import z, { success } from 'zod'
+import z from 'zod'
 import { usernameValidation } from '@/schemas/usernameValidation'
 import { prisma } from '@/lib/prisma'
 
 const usernameValid = z.object({
     username: usernameValidation
 })
-
+console.log(typeof prisma)          // "object" aana chahiye (PrismaClient)
+console.log('data' in prisma)       // false aana chahiye
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
@@ -26,10 +27,10 @@ export async function GET(request: Request) {
             }, { status: 400 })
 
         }
-        const { username } = result.data
-        const existingUsername = await prisma.user.update({
-            where: { username },
-            data: { isVerified: true }
+        const username  = result.data
+        const existingUsername = await prisma.user.findUnique({
+            where: { username : prisma.data.username },
+            select: { id: true }
         })
 
         if (existingUsername) {
