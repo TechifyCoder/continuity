@@ -2,7 +2,11 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 import { z } from "zod"
+import { Resend } from "resend"
 import { usernameValidation } from "@/schemas/usernameValidation"
+import {VerificationEmail} from '@/email/VerificationEmail'
+
+const resend = new Resend(process.env.RESEND_API_SECRET);
 
 const signupSchema = z.object({
     username: usernameValidation,
@@ -17,11 +21,11 @@ export async function POST(req: Request) {
         const body = await req.json();
         const parsed = signupSchema.safeParse(body);
         if (!parsed.success) {
-            console.error("Zod Error:", JSON.stringify(parsed.error.format(), null, 2));
-            return NextResponse.json({ 
-                success: false, 
-                message: "Validation Error", 
-                errors: parsed.error.format() 
+            // console.error("Zod Error:", JSON.stringify(parsed.error.format(), null, 2));
+            return NextResponse.json({
+                success: false,
+                message: "Validation Error",
+                errors: parsed.error.format()
             }, { status: 400 });
         }
         const { username, first_name, last_name, email, password } = parsed.data
@@ -44,6 +48,12 @@ export async function POST(req: Request) {
             }, { status: 409 })
         }
 
+        const verifyCode = Math.floor(100000 + Math.random() * 900000).toString()
+
+        const expiryCodeDate = new Date();
+        expiryCodeDate.setHours(expiryCodeDate.getHours() + 1)
+
+
         const hashPassword = await bcrypt.hash(password, 10)
 
         const user = await prisma.user.create({
@@ -52,9 +62,26 @@ export async function POST(req: Request) {
                 first_name,
                 last_name,
                 email,
-                password: hashPassword
+                password: hashPassword,
+                verifyCode:verifyCode,
+                verifyCodeExpiry: expiryCodeDate,
+                isVerified: false
             }
         })
+        const emailResponse = await resend.emails.send({
+            from: 'onboarding@resend.dev', // Use this for testing
+            to: email,
+            subject: 'Verification Code | Mystery Message',
+            react: VerificationEmail({ username, otp: verifyCode }),
+        });
+
+        if(emailResponse.error){
+            return NextResponse.json({
+                success: false,
+                message: "Error sending email",
+                error: emailResponse.error
+            }, { status: 500 });
+        }
 
         return NextResponse.json({ message: "User created", userId: user.id }, { status: 201 })
     } catch (error: any) {
