@@ -14,16 +14,18 @@ datasource db {
 }
 
 model User {
-  id         String  @id @default(uuid())
-  first_name String
-  last_name  String?
-  username   String   @unique
-  email      String   @unique
-  password   String
-  image      String?
-  isVerified Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime? @updatedAt
+  id               String    @id @default(uuid())
+  first_name       String
+  last_name        String?
+  username         String    @unique
+  email            String    @unique
+  password         String
+  image            String?
+  verifyCode       String
+  verifyCodeExpiry DateTime
+  isVerified       Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime? @updatedAt
 
   accounts Account[]
   sessions Session[]
