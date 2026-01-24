@@ -4,6 +4,13 @@ import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 // import { PrismaAdapter } from '@prisma/adapter-pg'
 import { z } from 'zod'
+import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+
+  interface GoogleProfile {
+  email_verified: boolean;
+  email: string;
+}
 
 const credentialShema = z.object({
     email: z.string().email("Invalid email"),
@@ -41,6 +48,14 @@ export const authOptions: NextAuthOptions = {
                 }
             }
 
+        }),
+        GitHubProvider({
+            clientId: process.env.GITHUB_ID ?? "",
+            clientSecret: process.env.GITHUB_SECRET ?? ""
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? ""
         })
     ],
     session: { strategy: "jwt" },
@@ -59,6 +74,19 @@ export const authOptions: NextAuthOptions = {
                 session.user.id = token.id as string
             }
             return session
+        },
+        async signIn({ account, profile }) {
+            if (account?.provider === "google") {
+                // 1. Cast profile to any or the specific Google type to avoid TS errors
+                // 2. Use 'email_verified' instead of 'isVerified'
+                const googleProfile = profile as GoogleProfile;
+
+                return (
+                    googleProfile.email_verified === true &&
+                    googleProfile.email?.endsWith("@example.com")
+                )
+            }
+            return true // Allow other providers (like Credentials)
         },
     },
 }
