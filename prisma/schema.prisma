@@ -14,18 +14,24 @@ datasource db {
 }
 
 model User {
-  id               String    @id @default(uuid())
+  id               String   @id @default(uuid())
   first_name       String
   last_name        String?
-  username         String    @unique
-  email            String    @unique
+  username         String   @unique
+  email            String   @unique
   password         String
   image            String?
   verifyCode       String
   verifyCodeExpiry DateTime
-  isVerified       Boolean   @default(false)
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime? @updatedAt
+  isVerified       Boolean  @default(false)
+
+  // Type of User (Student, Professional - Jaisa aapne image me likha)
+  persona UserPersona @default(STUDENT)
+  habits  Habits[] //one user -> many Habit
+  todos   todos[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 
   accounts Account[]
   sessions Session[]
@@ -62,4 +68,64 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Habits {
+  id                String  @id @default(uuid())
+  title             String
+  description       String?
+  duration          Int?    @default(30)
+
+  currentStraek     Int @default(0)
+  longestStraek     Int @default(0)
+
+  userId            String
+  user              User   @relation(fields: [userId], references: [id])
+
+  logs              HabitLog[] // Is habit ki daily history
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+
+model HabitLog{
+  id           String   @id @default(uuid())
+  date         DateTime @default(now())
+
+  status       HabitStatus @default(PENDING)
+  note          String
+
+  habitId       String
+  habit         Habits  @relation(fields: [habitId], references: [id])
+
+  @@unique([habitId, date])
+}
+
+
+model todos{
+  id          String   @id @default(uuid())
+  title       String   // Task name: "write Assignment"
+  description String?
+  isCompleted Boolean  @default(false)
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+
+  createdAt   DateTime @default(now()) 
+}
+
+
+enum UserPersona {
+  STUDENT
+  PROFESSIONAL
+  FREELANCER
+  OTHER
+}
+
+enum HabitStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
 }
