@@ -59,3 +59,23 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model Habit
+ * 
+ */
+export type Habit = Prisma.HabitModel
+/**
+ * Model HabitLog
+ * 
+ */
+export type HabitLog = Prisma.HabitLogModel
+/**
+ * Model todos
+ * 
+ */
+export type todos = Prisma.todosModel
+/**
+ * Model FocusLog
+ * 
+ */
+export type FocusLog = Prisma.FocusLogModel

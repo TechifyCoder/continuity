@@ -65,6 +65,6 @@ export async function GET(req: Request) {
         return NextResponse.json({ success: true, todos: myTodo })
 
     } catch (error) {
-
+        return NextResponse.json({ success: false, message: "Error geting Todo" })
     }
 }

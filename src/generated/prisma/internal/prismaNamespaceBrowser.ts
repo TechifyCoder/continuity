@@ -54,7 +54,11 @@ export const ModelName = {
   User: 'User',
   Account: 'Account',
   Session: 'Session',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Habit: 'Habit',
+  HabitLog: 'HabitLog',
+  todos: 'todos',
+  FocusLog: 'FocusLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -84,6 +88,9 @@ export const UserScalarFieldEnum = {
   verifyCode: 'verifyCode',
   verifyCodeExpiry: 'verifyCodeExpiry',
   isVerified: 'isVerified',
+  persona: 'persona',
+  xp: 'xp',
+  level: 'level',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -124,6 +131,56 @@ export const VerificationTokenScalarFieldEnum = {
 } as const
 
 export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+export const HabitScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  duration: 'duration',
+  currentStreak: 'currentStreak',
+  longestStreak: 'longestStreak',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HabitScalarFieldEnum = (typeof HabitScalarFieldEnum)[keyof typeof HabitScalarFieldEnum]
+
+
+export const HabitLogScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  status: 'status',
+  note: 'note',
+  habitId: 'habitId'
+} as const
+
+export type HabitLogScalarFieldEnum = (typeof HabitLogScalarFieldEnum)[keyof typeof HabitLogScalarFieldEnum]
+
+
+export const TodosScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  isCompleted: 'isCompleted',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
+
+
+export const FocusLogScalarFieldEnum = {
+  id: 'id',
+  duration: 'duration',
+  getDuration: 'getDuration',
+  xpEarned: 'xpEarned',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type FocusLogScalarFieldEnum = (typeof FocusLogScalarFieldEnum)[keyof typeof FocusLogScalarFieldEnum]
 
 
 export const SortOrder = {

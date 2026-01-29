@@ -20,8 +20,20 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
+}
+
+export type UserAvgAggregateOutputType = {
+  xp: number | null
+  level: number | null
+}
+
+export type UserSumAggregateOutputType = {
+  xp: number | null
+  level: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -35,6 +47,9 @@ export type UserMinAggregateOutputType = {
   verifyCode: string | null
   verifyCodeExpiry: Date | null
   isVerified: boolean | null
+  persona: $Enums.UserPersona | null
+  xp: number | null
+  level: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +65,9 @@ export type UserMaxAggregateOutputType = {
   verifyCode: string | null
   verifyCodeExpiry: Date | null
   isVerified: boolean | null
+  persona: $Enums.UserPersona | null
+  xp: number | null
+  level: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,11 +83,24 @@ export type UserCountAggregateOutputType = {
   verifyCode: number
   verifyCodeExpiry: number
   isVerified: number
+  persona: number
+  xp: number
+  level: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type UserAvgAggregateInputType = {
+  xp?: true
+  level?: true
+}
+
+export type UserSumAggregateInputType = {
+  xp?: true
+  level?: true
+}
 
 export type UserMinAggregateInputType = {
   id?: true
@@ -82,6 +113,9 @@ export type UserMinAggregateInputType = {
   verifyCode?: true
   verifyCodeExpiry?: true
   isVerified?: true
+  persona?: true
+  xp?: true
+  level?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -97,6 +131,9 @@ export type UserMaxAggregateInputType = {
   verifyCode?: true
   verifyCodeExpiry?: true
   isVerified?: true
+  persona?: true
+  xp?: true
+  level?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +149,9 @@ export type UserCountAggregateInputType = {
   verifyCode?: true
   verifyCodeExpiry?: true
   isVerified?: true
+  persona?: true
+  xp?: true
+  level?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -155,6 +195,18 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -185,6 +237,8 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
+  _avg?: UserAvgAggregateInputType
+  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -200,9 +254,14 @@ export type UserGroupByOutputType = {
   verifyCode: string
   verifyCodeExpiry: Date
   isVerified: boolean
+  persona: $Enums.UserPersona
+  xp: number
+  level: number
   createdAt: Date
   updatedAt: Date | null
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -236,8 +295,14 @@ export type UserWhereInput = {
   verifyCode?: Prisma.StringFilter<"User"> | string
   verifyCodeExpiry?: Prisma.DateTimeFilter<"User"> | Date | string
   isVerified?: Prisma.BoolFilter<"User"> | boolean
+  persona?: Prisma.EnumUserPersonaFilter<"User"> | $Enums.UserPersona
+  xp?: Prisma.IntFilter<"User"> | number
+  level?: Prisma.IntFilter<"User"> | number
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  habits?: Prisma.HabitListRelationFilter
+  todos?: Prisma.TodosListRelationFilter
+  focuslog?: Prisma.FocusLogListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
 }
@@ -253,8 +318,14 @@ export type UserOrderByWithRelationInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  habits?: Prisma.HabitOrderByRelationAggregateInput
+  todos?: Prisma.todosOrderByRelationAggregateInput
+  focuslog?: Prisma.FocusLogOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
@@ -273,8 +344,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   verifyCode?: Prisma.StringFilter<"User"> | string
   verifyCodeExpiry?: Prisma.DateTimeFilter<"User"> | Date | string
   isVerified?: Prisma.BoolFilter<"User"> | boolean
+  persona?: Prisma.EnumUserPersonaFilter<"User"> | $Enums.UserPersona
+  xp?: Prisma.IntFilter<"User"> | number
+  level?: Prisma.IntFilter<"User"> | number
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  habits?: Prisma.HabitListRelationFilter
+  todos?: Prisma.TodosListRelationFilter
+  focuslog?: Prisma.FocusLogListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
 }, "id" | "username" | "email">
@@ -290,11 +367,16 @@ export type UserOrderByWithAggregationInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
+  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
+  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -311,6 +393,9 @@ export type UserScalarWhereWithAggregatesInput = {
   verifyCode?: Prisma.StringWithAggregatesFilter<"User"> | string
   verifyCodeExpiry?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  persona?: Prisma.EnumUserPersonaWithAggregatesFilter<"User"> | $Enums.UserPersona
+  xp?: Prisma.IntWithAggregatesFilter<"User"> | number
+  level?: Prisma.IntWithAggregatesFilter<"User"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
@@ -326,8 +411,14 @@ export type UserCreateInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
@@ -343,8 +434,14 @@ export type UserUncheckedCreateInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosUncheckedCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
@@ -360,8 +457,14 @@ export type UserUpdateInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
@@ -377,8 +480,14 @@ export type UserUncheckedUpdateInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUncheckedUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -394,6 +503,9 @@ export type UserCreateManyInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
   createdAt?: Date | string
   updatedAt?: Date | string | null
 }
@@ -409,6 +521,9 @@ export type UserUpdateManyMutationInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -424,6 +539,9 @@ export type UserUncheckedUpdateManyInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -439,8 +557,16 @@ export type UserCountOrderByAggregateInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserAvgOrderByAggregateInput = {
+  xp?: Prisma.SortOrder
+  level?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -454,6 +580,9 @@ export type UserMaxOrderByAggregateInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -469,8 +598,16 @@ export type UserMinOrderByAggregateInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserSumOrderByAggregateInput = {
+  xp?: Prisma.SortOrder
+  level?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -492,6 +629,18 @@ export type DateTimeFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type EnumUserPersonaFieldUpdateOperationsInput = {
+  set?: $Enums.UserPersona
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -526,6 +675,48 @@ export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsInput, Prisma.UserUpdateWithoutSessionsInput>, Prisma.UserUncheckedUpdateWithoutSessionsInput>
 }
 
+export type UserCreateNestedOneWithoutHabitsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHabitsInput, Prisma.UserUncheckedCreateWithoutHabitsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHabitsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutHabitsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutHabitsInput, Prisma.UserUncheckedCreateWithoutHabitsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutHabitsInput
+  upsert?: Prisma.UserUpsertWithoutHabitsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHabitsInput, Prisma.UserUpdateWithoutHabitsInput>, Prisma.UserUncheckedUpdateWithoutHabitsInput>
+}
+
+export type UserCreateNestedOneWithoutTodosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTodosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodosInput
+  upsert?: Prisma.UserUpsertWithoutTodosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTodosInput, Prisma.UserUpdateWithoutTodosInput>, Prisma.UserUncheckedUpdateWithoutTodosInput>
+}
+
+export type UserCreateNestedOneWithoutFocuslogInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFocuslogInput, Prisma.UserUncheckedCreateWithoutFocuslogInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFocuslogInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFocuslogNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFocuslogInput, Prisma.UserUncheckedCreateWithoutFocuslogInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFocuslogInput
+  upsert?: Prisma.UserUpsertWithoutFocuslogInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFocuslogInput, Prisma.UserUpdateWithoutFocuslogInput>, Prisma.UserUncheckedUpdateWithoutFocuslogInput>
+}
+
 export type UserCreateWithoutAccountsInput = {
   id?: string
   first_name: string
@@ -537,8 +728,14 @@ export type UserCreateWithoutAccountsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
 }
 
@@ -553,8 +750,14 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosUncheckedCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -585,8 +788,14 @@ export type UserUpdateWithoutAccountsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
 }
 
@@ -601,8 +810,14 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUncheckedUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -617,8 +832,14 @@ export type UserCreateWithoutSessionsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
 }
 
@@ -633,8 +854,14 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosUncheckedCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -665,8 +892,14 @@ export type UserUpdateWithoutSessionsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
 }
 
@@ -681,9 +914,327 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUncheckedUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutHabitsInput = {
+  id?: string
+  first_name: string
+  last_name?: string | null
+  username: string
+  email: string
+  password: string
+  image?: string | null
+  verifyCode: string
+  verifyCodeExpiry: Date | string
+  isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  todos?: Prisma.todosCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutHabitsInput = {
+  id?: string
+  first_name: string
+  last_name?: string | null
+  username: string
+  email: string
+  password: string
+  image?: string | null
+  verifyCode: string
+  verifyCodeExpiry: Date | string
+  isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  todos?: Prisma.todosUncheckedCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutHabitsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutHabitsInput, Prisma.UserUncheckedCreateWithoutHabitsInput>
+}
+
+export type UserUpsertWithoutHabitsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutHabitsInput, Prisma.UserUncheckedUpdateWithoutHabitsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutHabitsInput, Prisma.UserUncheckedCreateWithoutHabitsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutHabitsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutHabitsInput, Prisma.UserUncheckedUpdateWithoutHabitsInput>
+}
+
+export type UserUpdateWithoutHabitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  todos?: Prisma.todosUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutHabitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  todos?: Prisma.todosUncheckedUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTodosInput = {
+  id?: string
+  first_name: string
+  last_name?: string | null
+  username: string
+  email: string
+  password: string
+  image?: string | null
+  verifyCode: string
+  verifyCodeExpiry: Date | string
+  isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTodosInput = {
+  id?: string
+  first_name: string
+  last_name?: string | null
+  username: string
+  email: string
+  password: string
+  image?: string | null
+  verifyCode: string
+  verifyCodeExpiry: Date | string
+  isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  focuslog?: Prisma.FocusLogUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTodosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+}
+
+export type UserUpsertWithoutTodosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTodosInput, Prisma.UserUncheckedUpdateWithoutTodosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTodosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTodosInput, Prisma.UserUncheckedUpdateWithoutTodosInput>
+}
+
+export type UserUpdateWithoutTodosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTodosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  focuslog?: Prisma.FocusLogUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutFocuslogInput = {
+  id?: string
+  first_name: string
+  last_name?: string | null
+  username: string
+  email: string
+  password: string
+  image?: string | null
+  verifyCode: string
+  verifyCodeExpiry: Date | string
+  isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutFocuslogInput = {
+  id?: string
+  first_name: string
+  last_name?: string | null
+  username: string
+  email: string
+  password: string
+  image?: string | null
+  verifyCode: string
+  verifyCodeExpiry: Date | string
+  isVerified?: boolean
+  persona?: $Enums.UserPersona
+  xp?: number
+  level?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.todosUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutFocuslogInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFocuslogInput, Prisma.UserUncheckedCreateWithoutFocuslogInput>
+}
+
+export type UserUpsertWithoutFocuslogInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFocuslogInput, Prisma.UserUncheckedUpdateWithoutFocuslogInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFocuslogInput, Prisma.UserUncheckedCreateWithoutFocuslogInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFocuslogInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFocuslogInput, Prisma.UserUncheckedUpdateWithoutFocuslogInput>
+}
+
+export type UserUpdateWithoutFocuslogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFocuslogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
+  verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.todosUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -692,11 +1243,17 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
  */
 
 export type UserCountOutputType = {
+  habits: number
+  todos: number
+  focuslog: number
   accounts: number
   sessions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  habits?: boolean | UserCountOutputTypeCountHabitsArgs
+  todos?: boolean | UserCountOutputTypeCountTodosArgs
+  focuslog?: boolean | UserCountOutputTypeCountFocuslogArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
 }
@@ -709,6 +1266,27 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHabitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HabitWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTodosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.todosWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFocuslogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FocusLogWhereInput
 }
 
 /**
@@ -737,8 +1315,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
+  persona?: boolean
+  xp?: boolean
+  level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
+  todos?: boolean | Prisma.User$todosArgs<ExtArgs>
+  focuslog?: boolean | Prisma.User$focuslogArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -755,6 +1339,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
+  persona?: boolean
+  xp?: boolean
+  level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -770,6 +1357,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
+  persona?: boolean
+  xp?: boolean
+  level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -785,12 +1375,18 @@ export type UserSelectScalar = {
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
+  persona?: boolean
+  xp?: boolean
+  level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "last_name" | "username" | "email" | "password" | "image" | "verifyCode" | "verifyCodeExpiry" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "last_name" | "username" | "email" | "password" | "image" | "verifyCode" | "verifyCodeExpiry" | "isVerified" | "persona" | "xp" | "level" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
+  todos?: boolean | Prisma.User$todosArgs<ExtArgs>
+  focuslog?: boolean | Prisma.User$focuslogArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -801,6 +1397,9 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    habits: Prisma.$HabitPayload<ExtArgs>[]
+    todos: Prisma.$todosPayload<ExtArgs>[]
+    focuslog: Prisma.$FocusLogPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
@@ -815,6 +1414,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     verifyCode: string
     verifyCodeExpiry: Date
     isVerified: boolean
+    persona: $Enums.UserPersona
+    xp: number
+    level: number
     createdAt: Date
     updatedAt: Date | null
   }, ExtArgs["result"]["user"]>
@@ -1211,6 +1813,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  habits<T extends Prisma.User$habitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$habitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  todos<T extends Prisma.User$todosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$todosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$todosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  focuslog<T extends Prisma.User$focuslogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$focuslogArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FocusLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1252,6 +1857,9 @@ export interface UserFieldRefs {
   readonly verifyCode: Prisma.FieldRef<"User", 'String'>
   readonly verifyCodeExpiry: Prisma.FieldRef<"User", 'DateTime'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly persona: Prisma.FieldRef<"User", 'UserPersona'>
+  readonly xp: Prisma.FieldRef<"User", 'Int'>
+  readonly level: Prisma.FieldRef<"User", 'Int'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -1639,6 +2247,78 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.habits
+ */
+export type User$habitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Habit
+   */
+  select?: Prisma.HabitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Habit
+   */
+  omit?: Prisma.HabitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HabitInclude<ExtArgs> | null
+  where?: Prisma.HabitWhereInput
+  orderBy?: Prisma.HabitOrderByWithRelationInput | Prisma.HabitOrderByWithRelationInput[]
+  cursor?: Prisma.HabitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HabitScalarFieldEnum | Prisma.HabitScalarFieldEnum[]
+}
+
+/**
+ * User.todos
+ */
+export type User$todosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the todos
+   */
+  select?: Prisma.todosSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the todos
+   */
+  omit?: Prisma.todosOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.todosInclude<ExtArgs> | null
+  where?: Prisma.todosWhereInput
+  orderBy?: Prisma.todosOrderByWithRelationInput | Prisma.todosOrderByWithRelationInput[]
+  cursor?: Prisma.todosWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TodosScalarFieldEnum | Prisma.TodosScalarFieldEnum[]
+}
+
+/**
+ * User.focuslog
+ */
+export type User$focuslogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FocusLog
+   */
+  select?: Prisma.FocusLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FocusLog
+   */
+  omit?: Prisma.FocusLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FocusLogInclude<ExtArgs> | null
+  where?: Prisma.FocusLogWhereInput
+  orderBy?: Prisma.FocusLogOrderByWithRelationInput | Prisma.FocusLogOrderByWithRelationInput[]
+  cursor?: Prisma.FocusLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FocusLogScalarFieldEnum | Prisma.FocusLogScalarFieldEnum[]
 }
 
 /**
