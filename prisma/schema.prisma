@@ -25,10 +25,13 @@ model User {
   verifyCodeExpiry DateTime
   isVerified       Boolean  @default(false)
 
+  xp    Int @default(0)
+  level Int @default(1)
   // Type of User (Student, Professional - Jaisa aapne image me likha)
-  persona UserPersona @default(STUDENT)
-  habits  Habits[] //one user -> many Habit
-  todos   todos[]
+  persona  UserPersona @default(STUDENT)
+  habits   Habit[] //one user -> many Habit
+  todos    todos[]
+  focuslog FocusLog[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
@@ -70,51 +73,60 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Habits {
-  id                String  @id @default(uuid())
-  title             String
-  description       String?
-  duration          Int?    @default(30)
+model Habit {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+  duration    Int?    @default(30)
 
-  currentStraek     Int @default(0)
-  longestStraek     Int @default(0)
+  currentStreak Int @default(0) // <-- Spelling fixed
+  longestStreak Int @default(0) // <-- Spelling fixed
 
-  userId            String
-  user              User   @relation(fields: [userId], references: [id])
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 
-  logs              HabitLog[] // Is habit ki daily history
+  logs HabitLog[]
 
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
+model HabitLog {
+  id     String      @id @default(uuid())
+  date   DateTime    @default(now())
+  status HabitStatus @default(PENDING)
+  note   String?
 
-model HabitLog{
-  id           String   @id @default(uuid())
-  date         DateTime @default(now())
-
-  status       HabitStatus @default(PENDING)
-  note          String
-
-  habitId       String
-  habit         Habits  @relation(fields: [habitId], references: [id])
+  habitId String
+  habit   Habit  @relation(fields: [habitId], references: [id]) // <-- Points to Habit
 
   @@unique([habitId, date])
 }
 
-
-model todos{
-  id          String   @id @default(uuid())
-  title       String   // Task name: "write Assignment"
+model todos {
+  id          String  @id @default(uuid())
+  title       String // Task name: "write Assignment"
   description String?
-  isCompleted Boolean  @default(false)
-  
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  isCompleted Boolean @default(false)
 
-  createdAt   DateTime @default(now()) 
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
 }
 
+model FocusLog {
+  id           String   @id @default(uuid())
+  duration     Int      // In minutes (e.g., 45 minutes)
+  goalDuration Int      // How long the user thought (e.g., 60 minutes)
+  
+  xpEarned     Int      // How much XP was gained from this session
+  
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  
+  createdAt    DateTime @default(now())
+}
 
 enum UserPersona {
   STUDENT
