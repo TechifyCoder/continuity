@@ -28,20 +28,20 @@ export type AggregateFocusLog = {
 
 export type FocusLogAvgAggregateOutputType = {
   duration: number | null
-  getDuration: number | null
+  goalDuration: number | null
   xpEarned: number | null
 }
 
 export type FocusLogSumAggregateOutputType = {
   duration: number | null
-  getDuration: number | null
+  goalDuration: number | null
   xpEarned: number | null
 }
 
 export type FocusLogMinAggregateOutputType = {
   id: string | null
   duration: number | null
-  getDuration: number | null
+  goalDuration: number | null
   xpEarned: number | null
   userId: string | null
   createdAt: Date | null
@@ -50,7 +50,7 @@ export type FocusLogMinAggregateOutputType = {
 export type FocusLogMaxAggregateOutputType = {
   id: string | null
   duration: number | null
-  getDuration: number | null
+  goalDuration: number | null
   xpEarned: number | null
   userId: string | null
   createdAt: Date | null
@@ -59,7 +59,7 @@ export type FocusLogMaxAggregateOutputType = {
 export type FocusLogCountAggregateOutputType = {
   id: number
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   userId: number
   createdAt: number
@@ -69,20 +69,20 @@ export type FocusLogCountAggregateOutputType = {
 
 export type FocusLogAvgAggregateInputType = {
   duration?: true
-  getDuration?: true
+  goalDuration?: true
   xpEarned?: true
 }
 
 export type FocusLogSumAggregateInputType = {
   duration?: true
-  getDuration?: true
+  goalDuration?: true
   xpEarned?: true
 }
 
 export type FocusLogMinAggregateInputType = {
   id?: true
   duration?: true
-  getDuration?: true
+  goalDuration?: true
   xpEarned?: true
   userId?: true
   createdAt?: true
@@ -91,7 +91,7 @@ export type FocusLogMinAggregateInputType = {
 export type FocusLogMaxAggregateInputType = {
   id?: true
   duration?: true
-  getDuration?: true
+  goalDuration?: true
   xpEarned?: true
   userId?: true
   createdAt?: true
@@ -100,7 +100,7 @@ export type FocusLogMaxAggregateInputType = {
 export type FocusLogCountAggregateInputType = {
   id?: true
   duration?: true
-  getDuration?: true
+  goalDuration?: true
   xpEarned?: true
   userId?: true
   createdAt?: true
@@ -196,7 +196,7 @@ export type FocusLogGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type FocusLogGroupByOutputType = {
   id: string
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   userId: string
   createdAt: Date
@@ -228,7 +228,7 @@ export type FocusLogWhereInput = {
   NOT?: Prisma.FocusLogWhereInput | Prisma.FocusLogWhereInput[]
   id?: Prisma.StringFilter<"FocusLog"> | string
   duration?: Prisma.IntFilter<"FocusLog"> | number
-  getDuration?: Prisma.IntFilter<"FocusLog"> | number
+  goalDuration?: Prisma.IntFilter<"FocusLog"> | number
   xpEarned?: Prisma.IntFilter<"FocusLog"> | number
   userId?: Prisma.StringFilter<"FocusLog"> | string
   createdAt?: Prisma.DateTimeFilter<"FocusLog"> | Date | string
@@ -238,7 +238,7 @@ export type FocusLogWhereInput = {
 export type FocusLogOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   duration?: Prisma.SortOrder
-  getDuration?: Prisma.SortOrder
+  goalDuration?: Prisma.SortOrder
   xpEarned?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -251,7 +251,7 @@ export type FocusLogWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.FocusLogWhereInput[]
   NOT?: Prisma.FocusLogWhereInput | Prisma.FocusLogWhereInput[]
   duration?: Prisma.IntFilter<"FocusLog"> | number
-  getDuration?: Prisma.IntFilter<"FocusLog"> | number
+  goalDuration?: Prisma.IntFilter<"FocusLog"> | number
   xpEarned?: Prisma.IntFilter<"FocusLog"> | number
   userId?: Prisma.StringFilter<"FocusLog"> | string
   createdAt?: Prisma.DateTimeFilter<"FocusLog"> | Date | string
@@ -261,7 +261,7 @@ export type FocusLogWhereUniqueInput = Prisma.AtLeast<{
 export type FocusLogOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   duration?: Prisma.SortOrder
-  getDuration?: Prisma.SortOrder
+  goalDuration?: Prisma.SortOrder
   xpEarned?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -278,7 +278,7 @@ export type FocusLogScalarWhereWithAggregatesInput = {
   NOT?: Prisma.FocusLogScalarWhereWithAggregatesInput | Prisma.FocusLogScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"FocusLog"> | string
   duration?: Prisma.IntWithAggregatesFilter<"FocusLog"> | number
-  getDuration?: Prisma.IntWithAggregatesFilter<"FocusLog"> | number
+  goalDuration?: Prisma.IntWithAggregatesFilter<"FocusLog"> | number
   xpEarned?: Prisma.IntWithAggregatesFilter<"FocusLog"> | number
   userId?: Prisma.StringWithAggregatesFilter<"FocusLog"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"FocusLog"> | Date | string
@@ -287,7 +287,7 @@ export type FocusLogScalarWhereWithAggregatesInput = {
 export type FocusLogCreateInput = {
   id?: string
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutFocuslogInput
@@ -296,7 +296,7 @@ export type FocusLogCreateInput = {
 export type FocusLogUncheckedCreateInput = {
   id?: string
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   userId: string
   createdAt?: Date | string
@@ -305,7 +305,7 @@ export type FocusLogUncheckedCreateInput = {
 export type FocusLogUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   duration?: Prisma.IntFieldUpdateOperationsInput | number
-  getDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  goalDuration?: Prisma.IntFieldUpdateOperationsInput | number
   xpEarned?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutFocuslogNestedInput
@@ -314,7 +314,7 @@ export type FocusLogUpdateInput = {
 export type FocusLogUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   duration?: Prisma.IntFieldUpdateOperationsInput | number
-  getDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  goalDuration?: Prisma.IntFieldUpdateOperationsInput | number
   xpEarned?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -323,7 +323,7 @@ export type FocusLogUncheckedUpdateInput = {
 export type FocusLogCreateManyInput = {
   id?: string
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   userId: string
   createdAt?: Date | string
@@ -332,7 +332,7 @@ export type FocusLogCreateManyInput = {
 export type FocusLogUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   duration?: Prisma.IntFieldUpdateOperationsInput | number
-  getDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  goalDuration?: Prisma.IntFieldUpdateOperationsInput | number
   xpEarned?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -340,7 +340,7 @@ export type FocusLogUpdateManyMutationInput = {
 export type FocusLogUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   duration?: Prisma.IntFieldUpdateOperationsInput | number
-  getDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  goalDuration?: Prisma.IntFieldUpdateOperationsInput | number
   xpEarned?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -359,7 +359,7 @@ export type FocusLogOrderByRelationAggregateInput = {
 export type FocusLogCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   duration?: Prisma.SortOrder
-  getDuration?: Prisma.SortOrder
+  goalDuration?: Prisma.SortOrder
   xpEarned?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -367,14 +367,14 @@ export type FocusLogCountOrderByAggregateInput = {
 
 export type FocusLogAvgOrderByAggregateInput = {
   duration?: Prisma.SortOrder
-  getDuration?: Prisma.SortOrder
+  goalDuration?: Prisma.SortOrder
   xpEarned?: Prisma.SortOrder
 }
 
 export type FocusLogMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   duration?: Prisma.SortOrder
-  getDuration?: Prisma.SortOrder
+  goalDuration?: Prisma.SortOrder
   xpEarned?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -383,7 +383,7 @@ export type FocusLogMaxOrderByAggregateInput = {
 export type FocusLogMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   duration?: Prisma.SortOrder
-  getDuration?: Prisma.SortOrder
+  goalDuration?: Prisma.SortOrder
   xpEarned?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -391,7 +391,7 @@ export type FocusLogMinOrderByAggregateInput = {
 
 export type FocusLogSumOrderByAggregateInput = {
   duration?: Prisma.SortOrder
-  getDuration?: Prisma.SortOrder
+  goalDuration?: Prisma.SortOrder
   xpEarned?: Prisma.SortOrder
 }
 
@@ -440,7 +440,7 @@ export type FocusLogUncheckedUpdateManyWithoutUserNestedInput = {
 export type FocusLogCreateWithoutUserInput = {
   id?: string
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   createdAt?: Date | string
 }
@@ -448,7 +448,7 @@ export type FocusLogCreateWithoutUserInput = {
 export type FocusLogUncheckedCreateWithoutUserInput = {
   id?: string
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   createdAt?: Date | string
 }
@@ -485,7 +485,7 @@ export type FocusLogScalarWhereInput = {
   NOT?: Prisma.FocusLogScalarWhereInput | Prisma.FocusLogScalarWhereInput[]
   id?: Prisma.StringFilter<"FocusLog"> | string
   duration?: Prisma.IntFilter<"FocusLog"> | number
-  getDuration?: Prisma.IntFilter<"FocusLog"> | number
+  goalDuration?: Prisma.IntFilter<"FocusLog"> | number
   xpEarned?: Prisma.IntFilter<"FocusLog"> | number
   userId?: Prisma.StringFilter<"FocusLog"> | string
   createdAt?: Prisma.DateTimeFilter<"FocusLog"> | Date | string
@@ -494,7 +494,7 @@ export type FocusLogScalarWhereInput = {
 export type FocusLogCreateManyUserInput = {
   id?: string
   duration: number
-  getDuration: number
+  goalDuration: number
   xpEarned: number
   createdAt?: Date | string
 }
@@ -502,7 +502,7 @@ export type FocusLogCreateManyUserInput = {
 export type FocusLogUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   duration?: Prisma.IntFieldUpdateOperationsInput | number
-  getDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  goalDuration?: Prisma.IntFieldUpdateOperationsInput | number
   xpEarned?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -510,7 +510,7 @@ export type FocusLogUpdateWithoutUserInput = {
 export type FocusLogUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   duration?: Prisma.IntFieldUpdateOperationsInput | number
-  getDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  goalDuration?: Prisma.IntFieldUpdateOperationsInput | number
   xpEarned?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -518,7 +518,7 @@ export type FocusLogUncheckedUpdateWithoutUserInput = {
 export type FocusLogUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   duration?: Prisma.IntFieldUpdateOperationsInput | number
-  getDuration?: Prisma.IntFieldUpdateOperationsInput | number
+  goalDuration?: Prisma.IntFieldUpdateOperationsInput | number
   xpEarned?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -528,7 +528,7 @@ export type FocusLogUncheckedUpdateManyWithoutUserInput = {
 export type FocusLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   duration?: boolean
-  getDuration?: boolean
+  goalDuration?: boolean
   xpEarned?: boolean
   userId?: boolean
   createdAt?: boolean
@@ -538,7 +538,7 @@ export type FocusLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type FocusLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   duration?: boolean
-  getDuration?: boolean
+  goalDuration?: boolean
   xpEarned?: boolean
   userId?: boolean
   createdAt?: boolean
@@ -548,7 +548,7 @@ export type FocusLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type FocusLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   duration?: boolean
-  getDuration?: boolean
+  goalDuration?: boolean
   xpEarned?: boolean
   userId?: boolean
   createdAt?: boolean
@@ -558,13 +558,13 @@ export type FocusLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type FocusLogSelectScalar = {
   id?: boolean
   duration?: boolean
-  getDuration?: boolean
+  goalDuration?: boolean
   xpEarned?: boolean
   userId?: boolean
   createdAt?: boolean
 }
 
-export type FocusLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "duration" | "getDuration" | "xpEarned" | "userId" | "createdAt", ExtArgs["result"]["focusLog"]>
+export type FocusLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "duration" | "goalDuration" | "xpEarned" | "userId" | "createdAt", ExtArgs["result"]["focusLog"]>
 export type FocusLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -583,7 +583,7 @@ export type $FocusLogPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     duration: number
-    getDuration: number
+    goalDuration: number
     xpEarned: number
     userId: string
     createdAt: Date
@@ -1013,7 +1013,7 @@ export interface Prisma__FocusLogClient<T, Null = never, ExtArgs extends runtime
 export interface FocusLogFieldRefs {
   readonly id: Prisma.FieldRef<"FocusLog", 'String'>
   readonly duration: Prisma.FieldRef<"FocusLog", 'Int'>
-  readonly getDuration: Prisma.FieldRef<"FocusLog", 'Int'>
+  readonly goalDuration: Prisma.FieldRef<"FocusLog", 'Int'>
   readonly xpEarned: Prisma.FieldRef<"FocusLog", 'Int'>
   readonly userId: Prisma.FieldRef<"FocusLog", 'String'>
   readonly createdAt: Prisma.FieldRef<"FocusLog", 'DateTime'>

@@ -1053,9 +1053,9 @@ export const UserScalarFieldEnum = {
   verifyCode: 'verifyCode',
   verifyCodeExpiry: 'verifyCodeExpiry',
   isVerified: 'isVerified',
-  persona: 'persona',
   xp: 'xp',
   level: 'level',
+  persona: 'persona',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1139,7 +1139,7 @@ export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof To
 export const FocusLogScalarFieldEnum = {
   id: 'id',
   duration: 'duration',
-  getDuration: 'getDuration',
+  goalDuration: 'goalDuration',
   xpEarned: 'xpEarned',
   userId: 'userId',
   createdAt: 'createdAt'
@@ -1214,20 +1214,6 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'UserPersona'
- */
-export type EnumUserPersonaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserPersona'>
-    
-
-
-/**
- * Reference to a field of type 'UserPersona[]'
- */
-export type ListEnumUserPersonaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserPersona[]'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1238,6 +1224,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'UserPersona'
+ */
+export type EnumUserPersonaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserPersona'>
+    
+
+
+/**
+ * Reference to a field of type 'UserPersona[]'
+ */
+export type ListEnumUserPersonaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserPersona[]'>
     
 
 

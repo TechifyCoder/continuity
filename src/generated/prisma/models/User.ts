@@ -47,9 +47,9 @@ export type UserMinAggregateOutputType = {
   verifyCode: string | null
   verifyCodeExpiry: Date | null
   isVerified: boolean | null
-  persona: $Enums.UserPersona | null
   xp: number | null
   level: number | null
+  persona: $Enums.UserPersona | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,9 +65,9 @@ export type UserMaxAggregateOutputType = {
   verifyCode: string | null
   verifyCodeExpiry: Date | null
   isVerified: boolean | null
-  persona: $Enums.UserPersona | null
   xp: number | null
   level: number | null
+  persona: $Enums.UserPersona | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -83,9 +83,9 @@ export type UserCountAggregateOutputType = {
   verifyCode: number
   verifyCodeExpiry: number
   isVerified: number
-  persona: number
   xp: number
   level: number
+  persona: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -113,9 +113,9 @@ export type UserMinAggregateInputType = {
   verifyCode?: true
   verifyCodeExpiry?: true
   isVerified?: true
-  persona?: true
   xp?: true
   level?: true
+  persona?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -131,9 +131,9 @@ export type UserMaxAggregateInputType = {
   verifyCode?: true
   verifyCodeExpiry?: true
   isVerified?: true
-  persona?: true
   xp?: true
   level?: true
+  persona?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -149,9 +149,9 @@ export type UserCountAggregateInputType = {
   verifyCode?: true
   verifyCodeExpiry?: true
   isVerified?: true
-  persona?: true
   xp?: true
   level?: true
+  persona?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -254,9 +254,9 @@ export type UserGroupByOutputType = {
   verifyCode: string
   verifyCodeExpiry: Date
   isVerified: boolean
-  persona: $Enums.UserPersona
   xp: number
   level: number
+  persona: $Enums.UserPersona
   createdAt: Date
   updatedAt: Date | null
   _count: UserCountAggregateOutputType | null
@@ -295,9 +295,9 @@ export type UserWhereInput = {
   verifyCode?: Prisma.StringFilter<"User"> | string
   verifyCodeExpiry?: Prisma.DateTimeFilter<"User"> | Date | string
   isVerified?: Prisma.BoolFilter<"User"> | boolean
-  persona?: Prisma.EnumUserPersonaFilter<"User"> | $Enums.UserPersona
   xp?: Prisma.IntFilter<"User"> | number
   level?: Prisma.IntFilter<"User"> | number
+  persona?: Prisma.EnumUserPersonaFilter<"User"> | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   habits?: Prisma.HabitListRelationFilter
@@ -318,9 +318,9 @@ export type UserOrderByWithRelationInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  persona?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   habits?: Prisma.HabitOrderByRelationAggregateInput
@@ -344,9 +344,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   verifyCode?: Prisma.StringFilter<"User"> | string
   verifyCodeExpiry?: Prisma.DateTimeFilter<"User"> | Date | string
   isVerified?: Prisma.BoolFilter<"User"> | boolean
-  persona?: Prisma.EnumUserPersonaFilter<"User"> | $Enums.UserPersona
   xp?: Prisma.IntFilter<"User"> | number
   level?: Prisma.IntFilter<"User"> | number
+  persona?: Prisma.EnumUserPersonaFilter<"User"> | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   habits?: Prisma.HabitListRelationFilter
@@ -367,9 +367,9 @@ export type UserOrderByWithAggregationInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  persona?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -393,9 +393,9 @@ export type UserScalarWhereWithAggregatesInput = {
   verifyCode?: Prisma.StringWithAggregatesFilter<"User"> | string
   verifyCodeExpiry?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  persona?: Prisma.EnumUserPersonaWithAggregatesFilter<"User"> | $Enums.UserPersona
   xp?: Prisma.IntWithAggregatesFilter<"User"> | number
   level?: Prisma.IntWithAggregatesFilter<"User"> | number
+  persona?: Prisma.EnumUserPersonaWithAggregatesFilter<"User"> | $Enums.UserPersona
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
@@ -411,9 +411,9 @@ export type UserCreateInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
@@ -434,9 +434,9 @@ export type UserUncheckedCreateInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
@@ -457,9 +457,9 @@ export type UserUpdateInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
@@ -480,9 +480,9 @@ export type UserUncheckedUpdateInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
@@ -503,9 +503,9 @@ export type UserCreateManyInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
 }
@@ -521,9 +521,9 @@ export type UserUpdateManyMutationInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -539,9 +539,9 @@ export type UserUncheckedUpdateManyInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -557,9 +557,9 @@ export type UserCountOrderByAggregateInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  persona?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -580,9 +580,9 @@ export type UserMaxOrderByAggregateInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  persona?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -598,9 +598,9 @@ export type UserMinOrderByAggregateInput = {
   verifyCode?: Prisma.SortOrder
   verifyCodeExpiry?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  persona?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   level?: Prisma.SortOrder
+  persona?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -631,16 +631,16 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
-export type EnumUserPersonaFieldUpdateOperationsInput = {
-  set?: $Enums.UserPersona
-}
-
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type EnumUserPersonaFieldUpdateOperationsInput = {
+  set?: $Enums.UserPersona
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -728,9 +728,9 @@ export type UserCreateWithoutAccountsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
@@ -750,9 +750,9 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
@@ -788,9 +788,9 @@ export type UserUpdateWithoutAccountsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
@@ -810,9 +810,9 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
@@ -832,9 +832,9 @@ export type UserCreateWithoutSessionsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
@@ -854,9 +854,9 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
@@ -892,9 +892,9 @@ export type UserUpdateWithoutSessionsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
@@ -914,9 +914,9 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
@@ -936,9 +936,9 @@ export type UserCreateWithoutHabitsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   todos?: Prisma.todosCreateNestedManyWithoutUserInput
@@ -958,9 +958,9 @@ export type UserUncheckedCreateWithoutHabitsInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   todos?: Prisma.todosUncheckedCreateNestedManyWithoutUserInput
@@ -996,9 +996,9 @@ export type UserUpdateWithoutHabitsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   todos?: Prisma.todosUpdateManyWithoutUserNestedInput
@@ -1018,9 +1018,9 @@ export type UserUncheckedUpdateWithoutHabitsInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   todos?: Prisma.todosUncheckedUpdateManyWithoutUserNestedInput
@@ -1040,9 +1040,9 @@ export type UserCreateWithoutTodosInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
@@ -1062,9 +1062,9 @@ export type UserUncheckedCreateWithoutTodosInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
@@ -1100,9 +1100,9 @@ export type UserUpdateWithoutTodosInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
@@ -1122,9 +1122,9 @@ export type UserUncheckedUpdateWithoutTodosInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
@@ -1144,9 +1144,9 @@ export type UserCreateWithoutFocuslogInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
@@ -1166,9 +1166,9 @@ export type UserUncheckedCreateWithoutFocuslogInput = {
   verifyCode: string
   verifyCodeExpiry: Date | string
   isVerified?: boolean
-  persona?: $Enums.UserPersona
   xp?: number
   level?: number
+  persona?: $Enums.UserPersona
   createdAt?: Date | string
   updatedAt?: Date | string | null
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
@@ -1204,9 +1204,9 @@ export type UserUpdateWithoutFocuslogInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
@@ -1226,9 +1226,9 @@ export type UserUncheckedUpdateWithoutFocuslogInput = {
   verifyCode?: Prisma.StringFieldUpdateOperationsInput | string
   verifyCodeExpiry?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
+  persona?: Prisma.EnumUserPersonaFieldUpdateOperationsInput | $Enums.UserPersona
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
@@ -1315,9 +1315,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
-  persona?: boolean
   xp?: boolean
   level?: boolean
+  persona?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
@@ -1339,9 +1339,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
-  persona?: boolean
   xp?: boolean
   level?: boolean
+  persona?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1357,9 +1357,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
-  persona?: boolean
   xp?: boolean
   level?: boolean
+  persona?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1375,14 +1375,14 @@ export type UserSelectScalar = {
   verifyCode?: boolean
   verifyCodeExpiry?: boolean
   isVerified?: boolean
-  persona?: boolean
   xp?: boolean
   level?: boolean
+  persona?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "last_name" | "username" | "email" | "password" | "image" | "verifyCode" | "verifyCodeExpiry" | "isVerified" | "persona" | "xp" | "level" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "last_name" | "username" | "email" | "password" | "image" | "verifyCode" | "verifyCodeExpiry" | "isVerified" | "xp" | "level" | "persona" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
   todos?: boolean | Prisma.User$todosArgs<ExtArgs>
@@ -1414,9 +1414,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     verifyCode: string
     verifyCodeExpiry: Date
     isVerified: boolean
-    persona: $Enums.UserPersona
     xp: number
     level: number
+    persona: $Enums.UserPersona
     createdAt: Date
     updatedAt: Date | null
   }, ExtArgs["result"]["user"]>
@@ -1857,9 +1857,9 @@ export interface UserFieldRefs {
   readonly verifyCode: Prisma.FieldRef<"User", 'String'>
   readonly verifyCodeExpiry: Prisma.FieldRef<"User", 'DateTime'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
-  readonly persona: Prisma.FieldRef<"User", 'UserPersona'>
   readonly xp: Prisma.FieldRef<"User", 'Int'>
   readonly level: Prisma.FieldRef<"User", 'Int'>
+  readonly persona: Prisma.FieldRef<"User", 'UserPersona'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }

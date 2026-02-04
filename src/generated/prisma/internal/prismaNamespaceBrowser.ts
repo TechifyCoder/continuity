@@ -88,9 +88,9 @@ export const UserScalarFieldEnum = {
   verifyCode: 'verifyCode',
   verifyCodeExpiry: 'verifyCodeExpiry',
   isVerified: 'isVerified',
-  persona: 'persona',
   xp: 'xp',
   level: 'level',
+  persona: 'persona',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -174,7 +174,7 @@ export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof To
 export const FocusLogScalarFieldEnum = {
   id: 'id',
   duration: 'duration',
-  getDuration: 'getDuration',
+  goalDuration: 'goalDuration',
   xpEarned: 'xpEarned',
   userId: 'userId',
   createdAt: 'createdAt'
